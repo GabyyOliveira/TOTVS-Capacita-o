@@ -9,7 +9,7 @@ User Function Ex33()
 
 
 	//adicionando no array
-	for nI := 1 to 5
+	for nI := 1 to 20
 		nNum := val(FwInputBox('Digite o ' + cValToChar(nI) + 'º número', ''))
 
 		aAdd(aArray,nNum)
@@ -18,9 +18,9 @@ User Function Ex33()
 	//percorrendo o tamanho do array
 	For nI := 1 to len(aArray)
 
-		For nX := (nI + 1) to (len(aArray) - nI)
-			if aArray[nX] == aArray[nI]
-                cExibe += cValToChar(aArray[nI]) + 'se repete: em' + cValToChar(nI)  + CRLF
+		For nX := (nI + 1) to 20
+			if aArray[nI] == aArray[nX]
+                cExibe += cValToChar(aArray[nI]) + ' se repete nas posições: ' + cValToChar(nI) + ' e ' + cValToChar(nX) + CRLF
 			endif
 		next
 
