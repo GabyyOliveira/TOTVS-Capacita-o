@@ -15,20 +15,23 @@ User Function L2Ex14()
 		endif
 	enddo
 
-	for nI := 1 to nLimite
 
-		if cEscolha == 'PAR'
+
+	if cEscolha == 'PAR'
+		for nI := 1 to (nLimite * 2)
 			if nI % 2 == 0
 				nSoma += nI
 			endif
-		else
+		next
+	else
+		for nI := 1 to (nLimite * 2) step 2
 			if nI % 2 != 0
 				nSoma += nI
 			endif
+		next
+	endif
 
-		endif
-	next
 
-    FwAlertInfo(cValToChar(nSoma), 'Soma dos ' + cValToChar(nLimite) + ' Primeiros Números ' + cEscolha)
+	FwAlertInfo(cValToChar(nSoma), 'Soma dos ' + cValToChar(nLimite) + ' Primeiros Números ' + cEscolha)
 
 return
