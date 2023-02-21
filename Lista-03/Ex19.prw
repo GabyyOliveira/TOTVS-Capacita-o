@@ -2,6 +2,7 @@
 
 User Function L3Ex19()
 	Local cFrase := ''
+    Local cUpperF := ''
 	Local nX
     Local nA := 0
     Local nE := 0
@@ -12,20 +13,21 @@ User Function L3Ex19()
 
 
 	cFrase := FwInputBox('Digite uma frase qualquer: ' , cFrase)
+    cUpperF := Upper(cFrase)
 
-	for nX := 1 to len(cFrase)
+	for nX := 1 to len(cUpperF)
 
-        if  asc( Substr(cFrase, nX, 1)) == 32
+        if  asc( Substr(cUpperF, nX, 1)) == 32
             nEspaco++
-        elseif asc( Substr(cFrase, nX, 1)) == 65 .or. asc( Substr(cFrase, nX, 1)) == 97 
+        elseif asc( Substr(cUpperF, nX, 1)) == 65 
             nA++
-        elseif  asc( Substr(cFrase, nX, 1)) == 69 .or. asc( Substr(cFrase, nX, 1)) == 101 
+        elseif  asc( Substr(cUpperF, nX, 1)) == 69  
             nE++
-        elseif  asc( Substr(cFrase, nX, 1)) == 73 .or. asc( Substr(cFrase, nX, 1)) == 105
+        elseif  asc( Substr(cUpperF, nX, 1)) == 73 
             nI++
-        elseif  asc( Substr(cFrase, nX, 1)) == 79 .or. asc( Substr(cFrase, nX, 1)) == 111 
+        elseif  asc( Substr(cUpperF, nX, 1)) == 79 
             nO++
-        elseif  asc( Substr(cFrase, nX, 1)) == 85 .or. asc( Substr(cFrase, nX, 1)) == 117
+        elseif  asc( Substr(cUpperF, nX, 1)) == 85 
             nU++
         endif   
             
@@ -34,5 +36,5 @@ User Function L3Ex19()
     FwAlertInfo('Frase digitada : ' + cFrase + CRLF +;
                 'Quantidade de espaços: ' + cValToChar(nEspaco) + CRLF +;
                 'Quantidade de vogais: ' + CRLF +;
-                'A: ' + cValToChar(nA) + ', E: ' + cValToChar(nE) + ', I: ' + cValToChar(nI)  + ', O: ' + cValToChar(nO) + ', U: ' + cValToChar(nU), 'Frase')
+                'A: ' + cValToChar(nA) + ', E: ' + cValToChar(nE) + ', I: ' + cValToChar(nI)  + ', O: ' + cValToChar(nO) + ', U: ' + cValToChar(nU), 'Frase ' + cFrase)
 Return
