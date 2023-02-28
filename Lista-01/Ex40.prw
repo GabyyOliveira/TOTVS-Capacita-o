@@ -4,7 +4,7 @@ User Function Ex40()
 	Local nSalarioBruto := 0
 	Local nValorHora , nQtdHoras
 	Local nSalarioLiquido := 0
-	Local nTotalDescontos :=0
+	Local nTotalDescontos :=0 
 	Local nIR := 0
 	Local cIR := ''
 	Local nINSS := 0

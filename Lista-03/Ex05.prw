@@ -38,9 +38,6 @@ User Function L3Ex05()
 		&(cAlias)->(DbSkip())
 	enddo
 
-	if nCont > 0
-		FwAlertInfo(cMsg, 'Produtos Apresentados em ordem decrescente')
-	endif
 
 	&(cAlias)->(DbCloseArea())
 	RestArea(aArea)

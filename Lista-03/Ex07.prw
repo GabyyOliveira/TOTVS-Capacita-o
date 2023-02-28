@@ -11,40 +11,49 @@ User Function L3Ex07()
 	Local cMsg := ''
 	Local dFim := ''
 	Local dInicio := ''
-	Local lRet := .t.
+	Local nCont := 1
 
 
-	while lRet
-		dInicio := CTOD(FwInputBox('Informe a data inicial do periodo: ', dInicio))
-		dFim := CTOD(FwInputBox('Informe a data final do periodo: ', dFim))
 
-		dInicio := DTOS(dInicio)
-		dFim := DTOS(dFim)
+	dInicio := CTOD(FwInputBox('Informe a data inicial do periodo: ', dInicio))
+	dFim := CTOD(FwInputBox('Informe a data final do periodo: ', dFim))
 
-		PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC5' MODULO 'FAT'
+	dInicio := DTOS(dInicio)
+	dFim := DTOS(dFim)
 
-		cQuery := 'SELECT C5_NUM, C5_EMISSAO' + CRLF
-		cQuery += "FROM " + RetSqlName('SC5') + " SC5" + CRLF
-		cQuery += "WHERE C5_EMISSAO BETWEEN '" + dInicio + "' AND '" + dFim + "' "
+	PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC5' MODULO 'FAT'
 
-		TCQUERY cQuery ALIAS &(cAlias) NEW
+	cQuery := 'SELECT C5_NUM, C5_EMISSAO' + CRLF
+	cQuery += "FROM " + RetSqlName('SC5') + " SC5" + CRLF
+	cQuery += "WHERE C5_EMISSAO BETWEEN '" + dInicio + "' AND '" + dFim + "' "
 
-		while &(cAlias)->(!EOF())
-			cPedido := &(cAlias)->(C5_NUM)
-			cData := &(cAlias)->(C5_EMISSAO)
+	TCQUERY cQuery ALIAS &(cAlias) NEW
 
-
-			cMsg += 'Pedido Nº: ' + cPedido + CRLF + 'Data de emissão: ' + cData + CRLF
-			cMsg += '=============' + CRLF + CRLF
+	while &(cAlias)->(!EOF())
+		cPedido := &(cAlias)->(C5_NUM)
+		cData := &(cAlias)->(C5_EMISSAO)
 
 
-			&(cAlias)->(DbSkip())
-		enddo
+		cMsg += 'Pedido Nº: ' + cPedido + CRLF + 'Data de emissão: ' + cData + CRLF
+		cMsg += '=============' + CRLF + CRLF
+		nCont++
 
-		FwAlertInfo(cMsg, 'Pedidos de venda')
+		if nCont == 10
+			FwAlertInfo(cMsg, 'Pedidos de venda')
+			nCont := 0
+			cMsg := ''
+		endif
 
-        lRet := MsgYesNo('Deseja fazer uma nova consulta? ', 'Nova consulta')
+		&(cAlias)->(DbSkip())
 	enddo
+
+	if nCont > 0
+		FwAlertInfo(cMsg, 'Pedidos de venda')
+	else
+		FwAlertError('Não há pedidos de venda para este período', 'Atenção')
+	endif
+
+
 
 	&(cAlias)->(DbCloseArea())
 	RestArea(aArea)

@@ -11,6 +11,6 @@ User Function L3Ex17()
 		cExibe += Upper(Substr(cNome, nI, 1)) + CRLF
 	next
 
-	FwAlertInfo( 'Nome digitado: ' + cNome + CRLF + 'Nome na vertical' + CRLF +  cExibe, 'Nome Contrario')
+	FwAlertInfo( 'Nome digitado: ' + cNome + CRLF + 'Nome na vertical' + CRLF +  cExibe, 'Nome Vertical')
 
 Return

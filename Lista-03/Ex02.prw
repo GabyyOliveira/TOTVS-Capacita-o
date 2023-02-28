@@ -30,7 +30,11 @@ User Function L3Ex02()
         &(cAlias)->(DbSkip())
     enddo 
 
-    FwAlertInfo(cMsg, 'Pedidos de venda sem Nota')
+    if cMsg == ' '
+        FwAlertError('Não há pedidos sem nota', 'Pedidos de venda sem Nota' )
+    else
+         FwAlertInfo(cMsg, 'Pedidos de venda sem Nota')
+    endif 
 
     &(cAlias)->(DbCloseArea())
     RestArea(aArea) 
