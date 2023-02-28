@@ -12,7 +12,7 @@ User Function L4Ex05()
 	Private oKm
 	Private oBtn
 
-	oDlg := MsDialog():New(0,0,159, 458, 'Calculo IMC',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
+	oDlg := MsDialog():New(0,0,159, 458, 'Aluguel de carro',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
 
 	// @ 23,23 Say 'Valor Dólar' SIZE 75,15 OF oDlg PIXEL
 	@ 23,23 MsGet oDias VAR nDias SIZE 75,15 OF oDlg PIXEL

@@ -28,13 +28,10 @@ Return
 
 Static Function BuscaProduto()
 	Local aArea   := GetArea()
-	// Local cAlias  := GetNextAlias()
-	// Local cQuery  := ''
-	// Local nI      := 0
 	Local lCadastrar := .f.
 	Private cCadastro := 'Cadastro de Produtos'
 
-	PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
+	// PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'COM'
 
 	DbSelectArea('SB1')
 	DbSetOrder(1)

@@ -40,9 +40,6 @@ static function searchDate(dInicio,dFim)
 
 	dFim := DTOS(CTOD(Alltrim(dFim)))
 
-
-
-
 	PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC5' MODULO 'FAT'
 
 	cQuery := 'SELECT C5_NUM, C5_EMISSAO' + CRLF

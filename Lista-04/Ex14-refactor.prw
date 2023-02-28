@@ -2,22 +2,21 @@
 #INCLUDE 'TBICONN.CH'
 #INCLUDE 'TOPCONN.CH'
 
-User Function L4Ex14()
+User Function L4Ex14Refac()
     Local oDlgPvt 
     Local CLR_COLOR := RGB(9,37, 50)
-    Local aProdutos 
     Private cExibe := '' 
     Private oProds 
-    Private cProd
+    Private cProd := space(9)
     Private oBtn
 
-    aProdutos := ProdSearch()
+	PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'FAT'
 
     oDlgPvt := MsDialog():New(0,0,250, 203, 'Busca Vendas',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
 
 
-    @ 014,6 Say 'Produto' SIZE 55,07 OF oDlgPvt PIXEL
-    @ 024,6 MsComboBox oProds VAR cProd ITEMS aProdutos SIZE 90,17 OF oDlgPvt PIXEL 
+    @ 014,6 Say 'Produto' SIZE 55,07 OF oDlgPvt PIXEL 
+    @ 024,6 MsGet oProds VAR cProd F3 'SB1' SIZE 90,17 OF oDlgPvt PIXEL HASBUTTON
    
    
     @ 45,25 BUTTON oBtn PROMPT 'Procurar Vendas' SIZE 50,15 OF oDlgPvt ACTION (SearchVendas()) PIXEL 
@@ -29,31 +28,6 @@ User Function L4Ex14()
 
     MsgInfo('Programa finalizado', 'Bye, Bye')
 Return 
-
-Static Function ProdSearch()
-    Local aArea := GetArea()
-	Local cAlias := GetNextAlias()
-    Local cProduto := ''
-    Local aProdutos := {}
-
-	PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SB1' MODULO 'FAT'
-
-	cQuery := 'SELECT *' + CRLF
-	cQuery += "FROM " + RetSqlName('SB1') + " SB1" + CRLF
-
-	TCQUERY cQuery ALIAS &(cAlias) NEW 
-
-	while &(cAlias)->(!EOF())
-		cProduto := &(cAlias)->(B1_COD)
-
-		aAdd(aProdutos, Alltrim(cProduto))
-
-		&(cAlias)->(DbSkip())
-	enddo
-
-	&(cAlias)->(DbCloseArea())
-	RestArea(aArea)
-return aProdutos
 
 static function SearchVendas()
     Local aArea := GetArea()
