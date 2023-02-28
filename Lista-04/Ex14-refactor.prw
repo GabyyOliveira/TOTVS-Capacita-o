@@ -2,6 +2,7 @@
 #INCLUDE 'TBICONN.CH'
 #INCLUDE 'TOPCONN.CH'
 
+//Alterações interessantes com ideia
 User Function L4Ex14Refac()
     Local oDlgPvt 
     Local CLR_COLOR := RGB(9,37, 50)
