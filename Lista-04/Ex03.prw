@@ -5,7 +5,7 @@ User Function L4Ex03()
     Local CLR_COLOR := RGB(184, 184, 184)
 
     private nCota := space(18)
-    private nQtd := space(6)
+    private nQtd := space(6) 
     private cRep := ''
 
     Private oFoto 

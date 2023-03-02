@@ -21,7 +21,7 @@ static function listaNumeros(aArray)
     for nI := len(aArray) to 1 step -1 
         cExibir += cValTochar(aArray[nI]) + ', '
     next 
-
+ 
     FwAlertInfo(cExibir, 'Exibindo Valores inversos do array')
 
 return 
