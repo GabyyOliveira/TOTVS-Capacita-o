@@ -24,18 +24,13 @@ return
 static function listaNum(aDados)
     Local nI 
     Local cExibe := ''
-    // Local nAux := 0
+
 
     for nI := len(aDados) to 1 step -1
         aDados[nI] := aDados[nI]
-        // aDados[nI] := aDados[nI-(nI-1)]
-        // aDados[nI-(nI-1)] := nAux
 
         cExibe += cValToChar(aDados[nI]) + ', '
         
     next 
-    // cExibe := ArrToKStr(aDados[nI])
-    
-        
-    
+
 return cExibe

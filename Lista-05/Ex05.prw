@@ -10,7 +10,7 @@ User Function L5Ex05()
 
   
 
-    oDlg := MsDialog():New(0,0,395, 222, 'Dia Semana',,,,,CLR_TEXT,CLR_BACK,,,.T.)
+    oDlg := MsDialog():New(0,0,395, 222, 'Arrays',,,,,CLR_TEXT,CLR_BACK,,,.T.)
 
 	@ 4,6 BITMAP SIZE 100,25 OF oDlg FILENAME cFoto NOBORDER PIXEL
 

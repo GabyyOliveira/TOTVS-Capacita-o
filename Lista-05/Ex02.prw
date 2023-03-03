@@ -9,6 +9,7 @@ User Function L5Ex02()
 	Local CLR_TEXT := rgb(96, 126, 170)
     Private cExibe := ''
     Private aArray := {}
+    Private nCont := 1
 
     oDlg := MsDialog():New(0,0,284, 265, 'ARRAY INVERSO',,,,,CLR_TEXT,CLR_BACK,,,.T.)
     @ 28,14 MsGet oNum Var nNum SIZE 105,15 OF oDlg PIXEL
@@ -27,7 +28,8 @@ static function AdicionaArray(nNum)
     Local cMsg := ''
 
     Aadd(aArray, val(nNum))
-    MsgInfo('Numero adicionado')
+    MsgInfo('Numero adicionado ' + cValToChar(nCont) + '/10')
+    nCont++
 
     if len(aArray) == 10
         cMsg += 'Array original ' + CRLF + ArrToKStr(aArray, ', ') + CRLF + '========================' + CRLF 
