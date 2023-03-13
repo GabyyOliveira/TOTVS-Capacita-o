@@ -16,8 +16,6 @@ User Function CUSTOMERVENDOR()
 		cIdPonto := aParam[2]
 		cIdModel := aParam[3]
 
-
-        
 		if cIdPonto == "MODELVLDACTIVE"
 			nOper := oObj:nOperation
             //ESTE É O EXERCICIO 08

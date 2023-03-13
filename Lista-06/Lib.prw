@@ -67,6 +67,7 @@ User Function AltCad()
 
     RecLock('SB1',.F.)
         SB1->B1_DESC := cProd 
+        SB1->B1_MSBLQL := '1'
     SB1->(MSUnlock())
 
     RestArea(aArea)
