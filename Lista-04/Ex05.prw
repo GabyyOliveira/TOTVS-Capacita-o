@@ -1,5 +1,8 @@
 #INCLUDE 'TOTVS.CH'
 
+#DEFINE PRECO_DIA 60
+#DEFINE PRECO_KM 0.15
+
 User Function L4Ex05()
 	Local oDlg
 	Local CLR_COLOR := RGB(204, 204, 0)
@@ -14,11 +17,11 @@ User Function L4Ex05()
 
 	oDlg := MsDialog():New(0,0,159, 458, 'Aluguel de carro',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
 
-	// @ 23,23 Say 'Valor Dólar' SIZE 75,15 OF oDlg PIXEL
+	@ 15,23 Say 'Dias de Aluguel' SIZE 90,15 OF oDlg PIXEL
 	@ 23,23 MsGet oDias VAR nDias SIZE 75,15 OF oDlg PIXEL
 	oDias:cPlaceHold := 'Informe a quantidade de Dias...'
 
-	// @ 035,010 Say 'Quantidade' SIZE 55,07 OF oDlg PIXEL
+	@ 42,23 Say 'Kms Rodados' SIZE 90,07 OF oDlg PIXEL
 	@ 50,23 MsGet oKm VAR nKm SIZE 75,15 OF oDlg PIXEL
 	oKm:cPlaceHold := 'Informe o kms rodados...'
 
@@ -30,10 +33,11 @@ User Function L4Ex05()
     MsgInfo('Programa finalizado', 'Bye, Bye')
 return
 
+//função para calcular o valor do aluguel do carro
 Static Function CarrosAlugados()
 	Local nAluguelTot := 0
 
-	nAluguelTot := (val(nDias) * 60) + (val(nKm) * 0.15)
+	nAluguelTot := (val(nDias) * PRECO_DIA) + (val(nKm) * PRECO_KM)
 
 	MsgInfo('Dias Alugado: ' + cValToChar(nDias) + CRLF +;
 		'Km percorridos: ' + cValToChar(nKm) + CRLF +;

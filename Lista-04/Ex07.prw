@@ -15,10 +15,7 @@ User Function L4Ex07()
 	Private cPass  := SPACE(15)
 
 	Private oBtn
-
     Private oConfPass, cConfirmPass := space(15)
-
-
 
 	oDlgPvt := MsDialog():New(0,0,374, 330, 'Cadastro',,,,,CLR_TEXT,CLR_COLOR,,,.T.)
 

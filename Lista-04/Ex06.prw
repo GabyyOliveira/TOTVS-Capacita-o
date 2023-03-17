@@ -21,9 +21,6 @@ User Function L4Ex06()
     Private oBtn 
     Private cBtn 
 
-
-
-
     oDlgPvt := MsDialog():New(0,0,393, 418, 'Login',,,,,CLR_WHITE,CLR_BLACK,,,.T.)
 
     //foto 
@@ -60,7 +57,6 @@ static Function VerificaUser()
         else 
             lPass := .f.
         endif 
-
     else 
         lUser := .f.
     endif 

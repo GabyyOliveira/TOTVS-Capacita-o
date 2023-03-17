@@ -4,16 +4,17 @@ User Function L4Ex01()
     Local oDlgPvt 
     Local nNum1 := space(18)
     Local nNum2 := space(4)
-    Local CLR_TEST := RGB(153,153, 255)
+    Local CLR_BACK := RGB(153,153, 255)
     Private oNum1 
     Private oNum2
-    Private oMult
-    Private oSub
+    Private oMultiplicacao
+    Private osubtracao
     Private oAdi
-    Private oDiv
+    Private odivisao
     Private oCan
 
-    oDlgPvt := MsDialog():New(0,0,217, 190, 'Calculadora',,,,,CLR_WHITE,CLR_TEST,,,.T.)
+    oDlgPvt := MsDialog():New(0,0,217, 190, 'Calculadora',,,,,CLR_WHITE,CLR_BACK,,,.T.)
+
     @ 014,010 Say 'Número 1' SIZE 55,07 OF oDlgPvt PIXEL
     @ 022,010 MsGet oNum1 VAR nNum1 SIZE 75,01 OF oDlgPvt PIXEL 
     oNum1:cPlaceHold := 'Digite um valor...'
@@ -22,10 +23,11 @@ User Function L4Ex01()
     @ 043,010 MsGet oNum2 VAR nNum2 SIZE 75,01 OF oDlgPvt PIXEL 
     oNum2:cPlaceHold := 'Digite um valor...'
 
+    //botões de chamada das funções 
     @ 062,11 BUTTON oAdi PROMPT '+' SIZE 25,15 OF oDlgPvt ACTION (soma(nNum1,nNum2)) PIXEL 
-    @ 062,37 BUTTON oSub PROMPT '-' SIZE 25,15 OF oDlgPvt ACTION (sub(nNum1,nNum2)) PIXEL 
-    @ 082,11 BUTTON oDiv PROMPT '/' SIZE 25,15 OF oDlgPvt ACTION (div(nNum1,nNum2)) PIXEL 
-    @ 082,37 BUTTON oMult PROMPT '*' SIZE 25,15 OF oDlgPvt ACTION (multi(nNum1,nNum2)) PIXEL 
+    @ 062,37 BUTTON osubtracao PROMPT '-' SIZE 25,15 OF oDlgPvt ACTION (subtracao(nNum1,nNum2)) PIXEL 
+    @ 082,11 BUTTON odivisao PROMPT '/' SIZE 25,15 OF oDlgPvt ACTION (divisao(nNum1,nNum2)) PIXEL 
+    @ 082,37 BUTTON oMultiplicacao PROMPT '*' SIZE 25,15 OF oDlgPvt ACTION (multiplicacao(nNum1,nNum2)) PIXEL 
     @ 062,64 BUTTON oCan PROMPT 'Sair' SIZE 25,35 OF oDlgPvt ACTION (oDlgPvt:End()) PIXEL 
     
 
@@ -34,6 +36,7 @@ User Function L4Ex01()
     MsgInfo('Programa finalizado', 'Bye, Bye')
 Return 
 
+//Função de soma dos valores digitados
 static function soma(nNum1,nNum2)
 	Local result := 0
 
@@ -45,7 +48,8 @@ static function soma(nNum1,nNum2)
     endif 
 return 
 
-static function sub(nNum1,nNum2)
+//função de subtração
+static function subtracao(nNum1,nNum2)
 	Local result := 0
 
     if val(nNum1) < 0 .or. val(nNum2) < 0
@@ -57,7 +61,8 @@ static function sub(nNum1,nNum2)
     endif 
 return 
 
-static function div(nNum1,nNum2)
+//função de divisão
+static function divisao(nNum1,nNum2)
 	Local result := 0
 
     if val(nNum1) < 0 .or. val(nNum2) < 0
@@ -69,7 +74,8 @@ static function div(nNum1,nNum2)
     endif 
 return
 
-static function multi(nNum1,nNum2)
+//função de multiplicação
+static function multiplicacao(nNum1,nNum2)
 	Local result := 0
 
     if val(nNum1) < 0 .or. val(nNum2) < 0

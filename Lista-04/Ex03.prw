@@ -14,8 +14,6 @@ User Function L4Ex03()
     Private oSalario , nSalario := space(10)
     Private oPorcent , cPorcent := space(10)
     Private oBtn
-    Private oFont := TFont():New('Poppins',,20,.t.)
-    Private oSay 
 
     oDlgPvt := MsDialog():New(0,0,304, 437, 'Aumento Salário',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
 
@@ -29,7 +27,7 @@ User Function L4Ex03()
     @ 96,58 Say 'Porcentagem Aumento:' SIZE 55,07 OF oDlgPvt PIXEL
     @ 104,58 MsGet oPorcent Var cPorcent SIZE 105,15 OF oDlgPvt PIXEL Picture '@E 999.999'
 
-    @ 128,85 BUTTON oBtn PROMPT 'Calcular' SIZE 50,15 OF oDlgPvt ACTION (CalcSalario()) PIXEL
+    @ 128,85 BUTTON oBtn PROMPT 'Calcular' SIZE 50,15 OF oDlgPvt ACTION (CalcSalario()) PIXEL //botão de chamada da rotina calcSalario()
 
 
     oDlgPvt:Activate(,,,.T.,,,)
@@ -37,6 +35,7 @@ User Function L4Ex03()
     MsgInfo('Programa finalizado', 'Bye, Bye')
 Return 
 
+//função para calcular o novo salario com a porcentagem de aumento 
 static function CalcSalario()
     Local nAumento := 0
     Private nNovoSalario := 0 

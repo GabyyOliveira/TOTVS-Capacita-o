@@ -30,6 +30,7 @@ User Function L4Ex14()
     MsgInfo('Programa finalizado', 'Bye, Bye')
 Return 
 
+//função para procurar produto
 Static Function ProdSearch()
     Local aArea := GetArea()
 	Local cAlias := GetNextAlias()
@@ -55,6 +56,7 @@ Static Function ProdSearch()
 	RestArea(aArea)
 return aProdutos
 
+//função para procurar pedidos de venda 
 static function SearchVendas()
     Local aArea := GetArea()
 	Local cAlias := GetNextAlias()

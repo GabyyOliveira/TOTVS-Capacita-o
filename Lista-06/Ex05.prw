@@ -6,7 +6,7 @@ User Function MT010INC()
 	Local lRet   := .t.
 
 	RecLock('SB1', .F.)
-	SB1->B1_DESC := ALLTRIM('Cad. Manual - ' + M->B1_DESC)
+	// SB1->B1_DESC := ALLTRIM('Cad. Manual - ' + M->B1_DESC)
     SB1->B1_MSBLQL := '1'
 	MsUnlock()
 

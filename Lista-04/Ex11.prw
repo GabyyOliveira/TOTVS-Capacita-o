@@ -13,8 +13,6 @@ User Function L4Ex11()
 	Private oBtn
 	Private cExibe := ''
 
-
-
 	oDlgPvt := MsDialog():New(0,0,174, 506, 'Buscar Produto',,,,,CLR_TEXT,CLR_COLOR,,,.T.)
 
 	//Input de usuário
@@ -23,8 +21,8 @@ User Function L4Ex11()
 	oCode:cPlaceHold := 'Informe o Codigo'
 
 
-	//Botão
-	@ 54,24 BUTTON oBtn PROMPT 'Calcular' SIZE 55,17 OF oDlgPvt ACTION (searchProd()) PIXEL
+	//Botão de chamada da função searchProd()
+	@ 54,24 BUTTON oBtn PROMPT 'Pro' SIZE 55,17 OF oDlgPvt ACTION (searchProd()) PIXEL
 
 	@ 11,100 Say cExibe SIZE 125, 60 OF oDlgPvt PIXEL
 

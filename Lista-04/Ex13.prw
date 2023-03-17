@@ -11,7 +11,7 @@ User Function L4Ex13()
 	Private cExibe := ''
 	Private oBtn
 
-	oDlgPvt := MsDialog():New(0,0,250, 203, 'Busca Período',,,,,CLR_TEXT,CLR_COLOR,,,.T.)
+	oDlgPvt := MsDialog():New(0,0,250, 203, 'Pedidos de venda',,,,,CLR_TEXT,CLR_COLOR,,,.T.)
 
 	@ 014,6 Say 'Codigo' SIZE 55,07 OF oDlgPvt PIXEL
 	@ 24,6 MsGet cCode SIZE 60,17 OF oDlgPvt PIXEL

@@ -4,7 +4,7 @@ User Function L4Ex02()
     Local oDlgPvt 
     Local CLR_COLOR := RGB(9,37, 50)
 
-    private nCota := space(18)
+    private nCota := space(7)
     private nQtd := space(6)
     private cRep := ''
 
@@ -13,6 +13,8 @@ User Function L4Ex02()
     Private oCalc
 
     oDlgPvt := MsDialog():New(0,0,217, 190, 'Converter Dólar',,,,,CLR_WHITE,CLR_COLOR,,,.T.)
+
+
     @ 014,010 Say 'Valor Dólar' SIZE 55,07 OF oDlgPvt PIXEL
     @ 022,010 MsGet oCota VAR nCota SIZE 75,01 OF oDlgPvt PIXEL 
     oCota:cPlaceHold := 'Digite o Valor atual do dólar'
@@ -32,6 +34,7 @@ User Function L4Ex02()
     MsgInfo('Programa finalizado', 'Bye, Bye')
 Return 
 
+//função que converte o valor do dólar em real
 static function converte()
     private nResult := 0
 

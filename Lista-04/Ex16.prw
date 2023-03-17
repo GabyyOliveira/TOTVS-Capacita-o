@@ -28,6 +28,8 @@ User Function L4Ex16()
 
 	MsgInfo('Programa finalizado', 'Bye, Bye')
 Return
+
+//função busca clientes 
 static function SearchClientes(cEstado)
 	Local aArea := GetArea()
 	Local cAlias := GetNextAlias()

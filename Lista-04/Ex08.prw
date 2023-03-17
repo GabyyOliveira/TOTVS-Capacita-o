@@ -3,7 +3,8 @@
 
 USER FUNCTION L4Ex08()
 
-	Local nAltura := SPACE(3), nPeso :=  SPACE(6)
+	Local nAltura := SPACE(3)
+	Local nPeso :=  SPACE(6)
     Local CLR_COLOR    := RGB(153, 153, 255)
 
 
@@ -17,19 +18,19 @@ USER FUNCTION L4Ex08()
 	@ 37,098 Say " Ex. 97,8 ou 97.8"
 	@ 45,018 MSGET nAltura SIZE 55,11 of oDlg PIXEL PICTURE "@!"  
 	@ 45,098 MSGET nPeso SIZE 55,11 of oDlg PIXEL PICTURE "@!"
-	@ 70,188 BMPBUTTON TYPE 01 ACTION geracalc(nAltura,nPeso) 
+	@ 70,188 BMPBUTTON TYPE 01 ACTION CalcImc(nAltura,nPeso) 
 
 	oDlg:Activate(,,,.T.,,,)
 
 RETURN
 
 //rotina calcula imc 
-Static Function geracalc(nAltura,nPeso)
+Static Function CalcImc(nAltura,nPeso)
 
 	Local cTexto := ""
 	Local nImc
 
-	If validpeso(nPeso)
+	If validapeso(nPeso)
 
 		nAltura := VAL(nAltura)/100 
 		nPeso   := VAL(STRTRAN(nPeso,",","."))
@@ -57,8 +58,8 @@ Static Function geracalc(nAltura,nPeso)
 
 Return
 
-//valida emtrada 
-Static Function validpeso(nPeso)
+//valida entrada 
+Static Function validapeso(nPeso)
 
 	Local lRet := .F.
 	Local cStrA:= ","

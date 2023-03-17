@@ -11,14 +11,10 @@ User Function L4Ex10()
 	Private oHoras
 	Private nHoras:= Space(15)
 
+    Private oValor
+	Private nValor := space(15)
+
 	Private oBtn
-
-    Private oValor, nValor := space(15)
-
-    Private oChMulher , oChHomen
-
-    Private oCheck , cCheck := 0
-
     Private cExibe := ''
 
 
@@ -29,7 +25,7 @@ User Function L4Ex10()
 	@ 9,20 BITMAP oFoto SIZE 250,80 OF oDlgPvt FILENAME cFoto NOBORDER PIXEL
 
 
-	//Input de usuário
+	//Input horas trabalhadas
 	@ 60,20 Say 'Horas trabalhadas: ' SIZE 28,6 OF oDlgPvt PIXEL
 	@ 71,20 MsGet oHoras VAR nHoras SIZE 60,17 OF oDlgPvt PIXEL
 	oHoras:cPlaceHold := 'Informe as horas no mes'
