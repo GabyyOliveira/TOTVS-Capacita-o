@@ -41,7 +41,6 @@ Static Function ModelDef()
 	Local oModel   := MPFormModel():New('MVCALM',/**/, bModelPos)
 	Local oStruZZM := FWFormStruct(1, 'ZZM')
 	Local aGatilho := FwStruTrigger('ZZM_INSTRU', 'ZZM_NOMEIN', 'ZZI->ZZI_NOME', .T., 'ZZI', 1, 'xFilial("ZZI")+Alltrim(M->ZZM_INSTRU)')
-
 	//adicionando o gatilho de campo
 	oStruZZM:AddTrigger(aGatilho[1], aGatilho[2], aGatilho[3], aGatilho[4])
 
@@ -181,6 +180,12 @@ Static Function VldAula(oView)
             oModel:SetValue('ZZM_AULAS', "2")
             help(NIL,NIL, 'Instrutor não selecionado', NIL, 'Instrutor em branco' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Selecione corretamente o instrutor e retorne a este campo'})
             oView:Refresh()
+		elseif DbSeek(xFilial("ZZI") + cInstrutor)
+			if ZZI_QTDAL == 5
+				oModel:SetValue('ZZM_AULAS', "2")
+				help(NIL,NIL, 'Instrutor indisponivel', NIL, 'O instrutor selecionado só pode atender 5 alunos',1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro instrutor'})
+				oView:Refresh()
+			endif 
         endif 
     endif 
 return 
