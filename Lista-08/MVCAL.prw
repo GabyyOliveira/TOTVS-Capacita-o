@@ -92,6 +92,10 @@ Static Function VldInstrutor(oModel)
 	Local cInstrutor := Alltrim(oModel:GetValue('ZZMMASTER', 'ZZM_INSTRU'))
 	Local cAulas := Alltrim(oModel:GetValue('ZZMMASTER', 'ZZM_AULAS'))
 	Local nQtd := 0
+	Local cInsAntigo
+	
+	DbSelectArea('ZZM')
+	DbSetOrder(1)
 
 	DbSelectArea('ZZI')
 	ZZI->(DbGoTop())
@@ -130,10 +134,14 @@ Static Function VldInstrutor(oModel)
 				endif
 
 			endif
-
+		
 		endif
 		ZZI->(DbSkip())
 	enddo
+
+	if nOper == 4
+		lOk := UpdateAl(cInstrutor, nQtd)
+	endif
 
 return lOk
 
@@ -185,6 +193,8 @@ User Function ExcAlunos()
 		enddo
 	endif
 
+
+
 	oMark:Refresh(.T.)
 return
 
@@ -202,7 +212,7 @@ Static Function VldAula(oView)
 			oModel:SetValue('ZZM_AULAS', "2")
 			help(NIL,NIL, 'Instrutor não selecionado', NIL, 'Instrutor em branco' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Selecione corretamente o instrutor e retorne a este campo'})
 			oView:Refresh()
-			
+
 		elseif DbSeek(xFilial("ZZI") + cInstrutor)
 			if ZZI_QTDAL == 5
 				oModel:SetValue('ZZM_AULAS', "2")
@@ -212,3 +222,41 @@ Static Function VldAula(oView)
 		endif
 	endif
 return
+
+Static Function UpdateAl(cInstrutor, nQtd)
+	Local cInsAntigo
+	Local lOk := .T.
+
+	DbSelectArea('ZZM')
+	DbSetOrder(1)
+
+	DbSelectArea('ZZI')
+	DbSetOrder(1)
+
+
+	if ZZM->(DbSeek(xFilial("ZZM") + ZZM->ZZM_COD))
+		cInsAntigo := ZZM->ZZM_INSTRU
+	endif
+
+	if ZZI->(DbSeek(xFilial("ZZI") + cInstrutor))
+		if cInstrutor != cInsAntigo
+			if ZZI->ZZI_QTDAL == 5
+				lOk := .f.
+				help(NIL,NIL, 'Instrutor indisponivel', NIL, 'O instrutor selecionado só pode atender 5 alunos',1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro instrutor'})
+			else
+
+				RecLock('ZZI', .F.)
+				nQtd++
+				ZZI->ZZI_QTDAL := nQtd
+				ZZI->(MSUnlock())
+
+				if DbSeek(xFilial('ZZI') + cInsAntigo)
+					RecLock('ZZI',.F.)
+					ZZI->ZZI_QTDAL -= 1
+					ZZI->(MSUnlock())
+				endif
+			endif
+		endif
+	endif
+
+return lOk
