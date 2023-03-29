@@ -92,8 +92,7 @@ Static Function VldInstrutor(oModel)
 	Local cInstrutor := Alltrim(oModel:GetValue('ZZMMASTER', 'ZZM_INSTRU'))
 	Local cAulas := Alltrim(oModel:GetValue('ZZMMASTER', 'ZZM_AULAS'))
 	Local nQtd := 0
-	Local cInsAntigo
-	
+		
 	DbSelectArea('ZZM')
 	DbSetOrder(1)
 
