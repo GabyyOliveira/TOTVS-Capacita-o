@@ -81,7 +81,7 @@ Static Function ViewDef()
 	//cria um titulo encima de cada formulário
 	oView:EnableTitleView('VIEW_ZZM', 'Cadastro de Alunos')
 
-    oView:SetFieldAction('ZZM_AULAS', { |oView| VldAula(oView)})
+	oView:SetFieldAction('ZZM_AULAS', { |oView| VldAula(oView)})
 return oView
 
 //Validação do Instrutor
@@ -94,7 +94,6 @@ Static Function VldInstrutor(oModel)
 	Local nQtd := 0
 
 	DbSelectArea('ZZI')
-
 	ZZI->(DbGoTop())
 
 	while ZZI->(!EOF())
@@ -119,17 +118,17 @@ Static Function VldInstrutor(oModel)
 					lOk := .f.
 					help(NIL,NIL, 'Aluno(a) em aulas', NIL, 'O aluno(a) ' +cNome+' Não pode ser excluido pois esta em aula' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro aluno'})
 				else
-                    if nQtd <= 1
-                        nQtd := 0
-                    else 
-					    nQtd--
-                    endif 
+					if nQtd <= 1
+						nQtd := 0
+					else
+						nQtd--
+					endif
 
 					RecLock('ZZI', .F.)
 					ZZI->ZZI_QTDAL := nQtd
 					ZZI->(MSUnlock())
 				endif
-			
+
 			endif
 
 		endif
@@ -140,6 +139,7 @@ return lOk
 
 //Exclusão de alunos marcados
 User Function ExcAlunos()
+	Local nQtd := 0
 
 	if MsgYesNo('Confima a exclusão dos Alunos marcados?')
 
@@ -148,14 +148,36 @@ User Function ExcAlunos()
 
 		while ZZM->(!EOF())
 
+			//verifica se esta marcado
 			if oMark:IsMark()
-				if Alltrim(ZZM_AULAS) != '1'
-					RecLock('ZZI', .F.)
-					ZZM->(DbDelete())
-					ZZM->(MSUnlock())
-                else 
-                    help(NIL,NIL, 'Aluno(a) em aulas', NIL, 'O aluno(a) ' +cNome+' Não pode ser excluido pois esta em aula' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro aluno'})
+
+				DbSelectArea('ZZI')
+				DbSetOrder(1)
+
+				if DbSeek(xFilial("ZZI") + ZZM->ZZM_INSTRU)
+					nQtd := ZZI->ZZI_QTDAL
+
+					//se o campo realiza aulas for diferente de SIM
+					if Alltrim(ZZM->ZZM_AULAS) != '1'
+						RecLock('ZZM', .F.)
+						ZZM->(DbDelete())
+						ZZM->(MSUnlock())
+
+						if nQtd <= 1
+							nQtd := 0
+						else
+							nQtd--
+						endif
+
+						RecLock('ZZI', .F.)
+						ZZI->ZZI_QTDAL := nQtd
+						ZZI->(MSUnlock())
+
+					else
+						help(NIL,NIL, 'Aluno(a) em aulas', NIL, 'O aluno(a) Não pode ser excluido pois esta em aula' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro aluno'})
+					endif
 				endif
+
 
 			endif
 
@@ -168,24 +190,25 @@ return
 
 //Validação do campo Realizando Aulas 
 Static Function VldAula(oView)
-    Local oModel := oView:GetModel('ZZMMASTER')
-    Local cInstrutor := Alltrim(oView:GetValue('ZZMMASTER', 'ZZM_INSTRU'))
-    Local cAulas := Alltrim(oView:GetValue('ZZMMASTER', 'ZZM_AULAS'))
+	Local oModel := oView:GetModel('ZZMMASTER')
+	Local cInstrutor := Alltrim(oView:GetValue('ZZMMASTER', 'ZZM_INSTRU'))
+	Local cAulas := Alltrim(oView:GetValue('ZZMMASTER', 'ZZM_AULAS'))
 
-    DbSelectArea('ZZI')
-    DbSetOrder(1)
+	DbSelectArea('ZZI')
+	DbSetOrder(1)
 
-    if cAulas == "1"
-        if Empty(cInstrutor)
-            oModel:SetValue('ZZM_AULAS', "2")
-            help(NIL,NIL, 'Instrutor não selecionado', NIL, 'Instrutor em branco' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Selecione corretamente o instrutor e retorne a este campo'})
-            oView:Refresh()
+	if cAulas == "1"
+		if Empty(cInstrutor)
+			oModel:SetValue('ZZM_AULAS', "2")
+			help(NIL,NIL, 'Instrutor não selecionado', NIL, 'Instrutor em branco' ,1,0,NIL,NIL,NIL,NIL,NIL, {'Selecione corretamente o instrutor e retorne a este campo'})
+			oView:Refresh()
+			
 		elseif DbSeek(xFilial("ZZI") + cInstrutor)
 			if ZZI_QTDAL == 5
 				oModel:SetValue('ZZM_AULAS', "2")
 				help(NIL,NIL, 'Instrutor indisponivel', NIL, 'O instrutor selecionado só pode atender 5 alunos',1,0,NIL,NIL,NIL,NIL,NIL, {'Escolha outro instrutor'})
 				oView:Refresh()
-			endif 
-        endif 
-    endif 
-return 
+			endif
+		endif
+	endif
+return
