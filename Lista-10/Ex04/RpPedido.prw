@@ -19,18 +19,18 @@ Static Function GeraReport()
 	Local oSection2 := TRSection():New(oSection1, 'Itens do Pedido')
 
 	//!Sessão 1
-	TRCell():New(oSection1, 'C7_NUM'    , 'SC7', 'Nº PEDIDO'  ,, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection1, 'C7_EMISSAO', 'SC7', 'DT. EMISSÃO','@R 9999/99/99', 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection1, 'C7_FORNECE', 'SC7', 'FORNECEDOR' ,, 30,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
-	TRCell():New(oSection1, 'C7_LOJA'   , 'SC7', 'LOJA',, 4,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection1, 'C7_COND'   , 'SC7', 'COND PAG',, 4,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection1, 'C7_NUM'    , 'SC7', 'Nº PEDIDO'   ,/*PICTURE*/     , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection1, 'C7_EMISSAO', 'SC7', 'DT. EMISSÃO' ,'@R 9999/99/99' , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection1, 'C7_FORNECE', 'SC7', 'FORNECEDOR'  ,/*PICTURE*/     , 30 ,,,'LEFT'   , .T., 'LEFT'   ,,, .T.,,, .T.)
+	TRCell():New(oSection1, 'C7_LOJA'   , 'SC7', 'LOJA'        ,/*PICTURE*/     , 4  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection1, 'C7_COND'   , 'SC7', 'COND PAG'    ,/*PICTURE*/     , 4  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
 
 	//!Sessão 2
-	TRCell():New(oSection2, 'C7_PRODUTO', 'SC7', 'Nº PRODUTO',, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection2, 'C7_DESCRI' , 'SC7', 'DESCRIÇÃO' ,,30,,,  'LEFT', .T.,  'LEFT', , ,  .T., , , .T.)
-	TRCell():New(oSection2, 'C7_QUANT'  , 'SC7', 'QTD. PROD' ,, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection2, 'C7_PRECO'  , 'SC7', 'PR. UNIT'  ,, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection2, 'C7_TOTAL'  , 'SC7', 'VLR TOTAL' ,, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection2, 'C7_PRODUTO', 'SC7', 'Nº PRODUTO'  ,/*PICTURE*/     , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection2, 'C7_DESCRI' , 'SC7', 'DESCRIÇÃO'   ,/*PICTURE*/     , 30 ,,,  'LEFT' , .T.,  'LEFT'  ,,, .T.,,, .T.)
+	TRCell():New(oSection2, 'C7_QUANT'  , 'SC7', 'QTD. PROD'   ,/*PICTURE*/     , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection2, 'C7_PRECO'  , 'SC7', 'PR. UNIT'    ,/*PICTURE*/     , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
+	TRCell():New(oSection2, 'C7_TOTAL'  , 'SC7', 'VLR TOTAL'   ,/*PICTURE*/     , 8  ,,,'CENTER' , .F., 'CENTER' ,,, .T.,,, .T.)
 
 
 	oBreak := TRBreak():New(oSection1, oSection1:Cell('C7_NUM'), '', .T.)

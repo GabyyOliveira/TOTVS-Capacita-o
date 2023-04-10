@@ -1,6 +1,7 @@
 #INCLUDE 'TOTVS.CH'
 #INCLUDE 'REPORT.CH'
 
+
 /*/{Protheus.doc} User Function RpFornec
    Relatório utilizando o TReport 
     @type  Function
@@ -11,8 +12,6 @@ User Function RpFornec()
 	Local oReport := GeraReport()
 
 	oReport:PrintDialog()
-
-
 Return
 
 Static Function GeraReport()
@@ -20,15 +19,15 @@ Static Function GeraReport()
 	Local oRel := TReport():New('RpFornec', 'Relatório de Fornecedor',, { |oRel| Imprime(oRel, cAlias) }, 'Esse Relatório Imprimirá o Cadastro do Fornecedor Selecionado', .F.)
 	Local oSection := TRSection():New(oRel, 'Cadastro de Fornecedor')
 
-	TRCell():New(oSection, 'A2_COD'    , 'SA2', 'CÓDIGO'        ,, 8,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_LOJA'   , 'SA2', 'LOJA'          ,, 4,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_NOME'   , 'SA2', 'RAZÃO SOCIAL'  ,, 30,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_END'    , 'SA2', 'ENDEREÇO'      ,, 30,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_BAIRRO' , 'SA2', 'BAIRRO'        ,, 20,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_MUN'    , 'SA2', 'CIDADE'        ,, 20,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_EST'    , 'SA2', 'UF'            ,, 4,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_CEP'    , 'SA2', 'CEP'           ,'@E 99999-999', 11,,,'CENTER', .F., 'CENTER', , , .T., , , .T.)
-	TRCell():New(oSection, 'A2_TEL'    , 'SA2', 'TELEFONE'      ,, 11,,,'LEFT', .T., 'LEFT', , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_COD'    , 'SA2', 'CÓDIGO'        ,/*PICTURE*/   , 8 ,,,'CENTER' , .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_LOJA'   , 'SA2', 'LOJA'          ,/*PICTURE*/   , 4 ,,,'CENTER' , .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_NOME'   , 'SA2', 'RAZÃO SOCIAL'  ,/*PICTURE*/   , 30,,,'LEFT'   , .T., 'LEFT'  , , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_END'    , 'SA2', 'ENDEREÇO'      ,/*PICTURE*/   , 30,,,'LEFT'   , .T., 'LEFT'  , , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_BAIRRO' , 'SA2', 'BAIRRO'        ,/*PICTURE*/   , 20,,,'LEFT'   , .T., 'LEFT'  , , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_MUN'    , 'SA2', 'CIDADE'        ,/*PICTURE*/   , 20,,,'LEFT'   , .T., 'LEFT'  , , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_EST'    , 'SA2', 'UF'            ,/*PICTURE*/   , 4 ,,,'CENTER' , .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_CEP'    , 'SA2', 'CEP'           ,'@E 99999-999', 11,,,'CENTER' , .F., 'CENTER', , , .T., , , .T.)
+	TRCell():New(oSection, 'A2_TEL'    , 'SA2', 'TELEFONE'      ,/*PICTURE*/   , 11,,,'LEFT'   , .T., 'LEFT'  , , , .T., , , .T.)
 
 
 return oRel
