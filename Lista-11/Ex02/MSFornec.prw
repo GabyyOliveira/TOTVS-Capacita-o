@@ -49,12 +49,12 @@ Static Function MontaRel(cAlias)
 	Local cPath     := 'C:\Users\gabyy\OneDrive\Documentos\Development\TOTVS\RELATORIOS\PDFS\'
 	Local cArchive  := 'CadFornec.pdf'
 
-	Private nLine   := 105
+	Private nLine   := 120
 	Private oPrint
-	Private oFont10 := TFont():New('Poppins', /**/, 10, /**/, .F., /**/,/**/,/**/,/**/,.F.,.F.)
-	Private oFont12 := TFont():New('Poppins', /**/, 12, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
-	Private oFont14 := TFont():New('Poppins', /**/, 14, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
-	Private oFont16 := TFont():New('Poppins', /**/, 16, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
+	Private oFont10 := TFont():New('Arial', /**/, 10, /**/, .F., /**/,/**/,/**/,/**/,.F.,.F.)
+	Private oFont12 := TFont():New('Arial', /**/, 12, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
+	Private oFont14 := TFont():New('Arial', /**/, 14, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
+	Private oFont16 := TFont():New('Arial', /**/, 16, /**/, .T., /**/,/**/,/**/,/**/,.F.,.F.)
 
 	oPrint := FwMSPrinter():New(cArchive, IMP_PDF, .F., '', .T., /*TR*/, @oPrint, '', /*LServ*/, /*C*/, /*RAW*/, .T.)
 	oPrint:cPathPDF := cPath
@@ -75,15 +75,19 @@ return
 Static Function Cabecalho()
 	Local cLogo := ('C:\TOTVS12\Protheus\protheus_data\system\LGRL' + SM0->M0_CODIGO + '.png')
 
-	oPrint:Box(15,15,85,580, '-8')
-
-	oPrint:Line(50,100,50,580,WHITE,'-6')
-
 	oPrint:SayBitMap(20,20,cLogo, 70,65)
-	oPrint:Line(15,100,85,100)
+	
+	//!INFORMAÇÕES DA EMPRESA
+	oPrint:Say(35,474,  Alltrim(SM0->M0_NOMECOM), oFont16,, BLACK)
+	oPrint:Say(45,456, 'Empresa/Filial: ' + Alltrim(SM0->M0_NOME) + ' / ' + Alltrim(SM0->M0_FILIAL), oFont10,, BLACK)
+	oPrint:Say(55,421,  Alltrim(SM0->M0_ENDENT) + " " + Alltrim(SM0->M0_BAIRENT) + "/" + Alltrim(SM0->M0_ESTENT) + ' ' + Alltrim(Transform(SM0->M0_CEPENT, '@e 99999-999')), oFont10,, BLACK)
+	oPrint:Say(65,478, 'CNPJ:' +  Alltrim(Transform(SM0->M0_CGC, '@R 99.999.999/9999-99')), oFont10,, BLACK)
+	oPrint:Say(75,513, 'Fone: ' +  Alltrim(SM0->M0_TEL), oFont10,, BLACK)
 
-	oPrint:Say(35,420, 'Empresa/Filial: ' + Alltrim(SM0->M0_NOME) + ' / ' + Alltrim(SM0->M0_FILIAL), oFont10,, BLACK)
-	oPrint:Say(70,230, 'Cadastro de Fornecedor', oFont16,, BLACK)
+	//!TITULO DO RELATÓRIO
+	oPrint:Line(85,15,85,580,,'-6')
+	oPrint:Say(100,240, 'Fornecedor',oFont16,, BLACK)
+	oPrint:Line(105,15,105,580,,'-6')
 
 	oPrint:Say(nLine,  20, 'CÓDIGO: '             , oFont12,, BLACK )
 	oPrint:Say(nLine,  270, 'LOJA: '              , oFont12,, BLACK )
@@ -108,7 +112,7 @@ Static Function ImpDados(cAlias)
 
 	(cAlias)->(DbGoTop())
 
-	nLine := 105
+	nLine := 120
 	oPrint:Say(nLine, 64, (cAlias)->(A2_COD), oFont10,, BLACK)
 
 	oPrint:Say(nLine, 300, (cAlias)->(A2_LOJA), oFont10,, BLACK)
