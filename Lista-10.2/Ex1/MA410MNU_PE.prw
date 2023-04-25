@@ -9,6 +9,7 @@
 User Function MA410MNU()
     aadd(aRotina,{'Relatorio','U_RelPDV()' , 0 , 6,0,NIL})   
     aadd(aRotina,{'Relatorio MSPrinter','U_MsPDV()' , 0 , 6,0,NIL})   
+    aadd(aRotina,{'Copiar Pdf','U_VldPasta()' , 0 , 6,0,NIL}) 
 Return aRotina
 
  

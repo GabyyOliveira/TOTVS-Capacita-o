@@ -1,6 +1,6 @@
 #INCLUDE 'TOTVS.CH'
 
-/*/{Protheus.doc} User Function CriaTxt
+/*/{Protheus.doc} User Function NewTxt
    programa para criar um arquivo TXT com o log do pedido de venda 
     @type  Function
     @author Gabriela Oliveira

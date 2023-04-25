@@ -20,8 +20,6 @@ User Function MT410INC()
 	Local cAlias 
 	Private cLog := 'LOG DO PEDIDO DE VENDA' + CRLF
 
-	FwAlertInfo('Entrei')
-
 	cLog += 'dados do pedido de venda preenchidos' + CRLF
 	cLog += 'Botão salvar acionado' + CRLF
 	cLog += 'Ponto de entrada "ativado"' + CRLF

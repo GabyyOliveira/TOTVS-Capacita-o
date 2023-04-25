@@ -1,6 +1,6 @@
 #INCLUDE 'TOTVS.CH'
 
-/*/{Protheus.doc} User Function Cria Pasta
+/*/{Protheus.doc} User Function NovaPasta
    programa criará um diretório chamado “Pedidos de venda” na pasta raiz do Protheus 
     @type  Function
     @author Gabriela Oliveira

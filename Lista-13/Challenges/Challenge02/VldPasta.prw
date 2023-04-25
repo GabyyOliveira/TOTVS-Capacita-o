@@ -1,6 +1,6 @@
 #INCLUDE 'TOTVS.CH'
 
-/*/{Protheus.doc} User Function VlsPasta
+/*/{Protheus.doc} User Function VldPasta
     Função para verificar se a pasta "Vendas Protheus" existe, e se não existir...cria-la e copiar o pdf para ela  
     @type  Function
     @author Gabriela Oliveira

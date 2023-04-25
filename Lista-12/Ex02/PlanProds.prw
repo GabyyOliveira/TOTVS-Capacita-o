@@ -64,7 +64,6 @@ User Function PlanProds()
 		(cAlias)->(DbSkip())
 	enddo
 
-
 	oExcel:Activate()
 	oExcel:GetXMLFile(cPath + cArq)
 
