@@ -1,0 +1,10 @@
+LOG DO PEDIDO DE VENDA
+dados do pedido de venda preenchidos
+Botão salvar acionado
+Ponto de entrada "ativado"
+Gerando a consulta no banco de dados...
+Relatório sendo gerado
+Montando o relatório...
+Montando o cabeçalho do relatorio...
+Imprimindo os dados no relatório
+Imprimindo o rodapé do relatório
