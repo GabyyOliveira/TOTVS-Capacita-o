@@ -8,7 +8,7 @@
 /*/
 User Function NewTxt()
 	Local cPath    := 'C:\TOTVS12\Protheus\protheus_data\Pedidos de Venda\'
-	Local cArquivo := 'Log.txt'
+	Local cArquivo := SC5->C5_NUM
 	Local cTexto   := cLog 
 	Local oWriter  := FwFileWriter():New(cPath + cArquivo, .T.)
 

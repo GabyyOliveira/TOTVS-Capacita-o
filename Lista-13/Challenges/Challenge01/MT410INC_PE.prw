@@ -70,7 +70,7 @@ return cAlias
 //Montando o Relatório 
 Static Function MontaRel(cAlias)
 	Local cPath     := U_NovaPasta()
-	Local cArchive  := 'Pedido_de_Venda.pdf'
+	Local cArchive  := SC5->C5_NUM
 
 	Private nLine   := 120
 	Private oPrint
